@@ -83,16 +83,20 @@ h1 em{font-style:italic;color:var(--purple)}
 
 /* ── VIDEO CARD ── */
 .video-card{background:var(--bg-2);border:0.5px solid var(--border);border-radius:16px;overflow:hidden}
-.fb-wrap{
+.native-video-wrap{
   width:100%;
   background:#111;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  min-height:220px;
+  border-radius:16px 16px 0 0;
   overflow:hidden;
+  position:relative;
 }
-.fb-video,.fb-video span,.fb-video span iframe{width:100%!important;max-width:100%!important}
+#mainVideo{
+  width:100%;
+  display:block;
+  max-height:300px;
+  object-fit:contain;
+  background:#111;
+}
 .video-info{padding:20px 20px 24px}
 .video-caption{font-size:14px;color:var(--muted);margin-bottom:14px;font-style:italic;line-height:1.55}
 .video-caption strong{color:var(--text);font-style:normal}
@@ -165,7 +169,7 @@ footer a{color:var(--purple);text-decoration:none}
         style="width:100%;display:block;background:#111;max-height:320px;object-fit:contain;"
         poster=""
       >
-        <source src="https://video.fblr21-2.fna.fbcdn.net/o1/v/t2/f2/m366/AQOD4XVQH5goe4HMTkZA4JGwkp11Zv3lamol12VQAplmYI2Zf-x4sn4Z-Tw3F1GdUYm2SZVygC0JAVpVx8hmYQXvxbuLLxwTsL4C7i_knhzTww.mp4?_nc_cat=107&_nc_oc=Adq3kUCd9LfSey8MHIhq_Pz5LqBqIIo9FzRTj01HS6TR7Eo3IxR91HQMw81KCNV1CEU&_nc_sid=9ca052&_nc_ht=video.fblr21-2.fna.fbcdn.net&_nc_ohc=Lqug8ciPka0Q7kNvwEBsfvh&efg=eyJ2ZW5jb2RlX3RhZyI6ImRhc2hfdnA5LWJhc2ljLWdlbjJfMTA4MHAiLCJ2aWRlb19pZCI6ODUzNzY5Njk1MTIyOTg4LCJvaWxfdXJsZ2VuX2FwcF9pZCI6MCwiY2xpZW50X25hbWUiOiJ1bmtub3duIiwieHB2X2Fzc2V0X2lkIjoxNDg5MzgyMDc1MDA1OTMyLCJhc3NldF9hZ2VfZGF5cyI6MjIzOSwidmlfdXNlY2FzZV9pZCI6MTAxMjIsImR1cmF0aW9uX3MiOjM2MiwiYml0cmF0ZSI6MTA1NjcwNSwidXJsZ2VuX3NvdXJjZSI6Ind3dyJ9&ccb=17-1&_nc_gid=aHeYTSXy7vDhg9S7wZCRoQ&_nc_ss=7b289&_nc_zt=28&oh=00_Af6Gcy2kncITMJYf8DrJR-bXBmctkIOFrqMhBLG-xSPlRw&oe=6A129725&bytestart=3912039&byteend=4459334" type="video/mp4">
+        <source src="https://video.xx.fbcdn.net/o1/v/t2/f2/m366/AQOD4XVQH5goe4HMTkZA4JGwkp11Zv3lamol12VQAplmYI2Zf-x4sn4Z-Tw3F1GdUYm2SZVygC0JAVpVx8hmYQXvxbuLLxwTsL4C7i_knhzTww.mp4?_nc_cat=107&_nc_oc=Adq3kUCd9LfSey8MHIhq_Pz5LqBqIIo9FzRTj01HS6TR7Eo3IxR91HQMw81KCNV1CEU&_nc_sid=9ca052&_nc_ht=scontent.fblr21-2.fna.fbcdn.net&_nc_ohc=Lqug8ciPka0Q7kNvwEBsfvh&efg=eyJ2ZW5jb2RlX3RhZyI6ImRhc2hfdnA5LWJhc2ljLWdlbjJfMTA4MHAiLCJ2aWRlb19pZCI6ODUzNzY5Njk1MTIyOTg4LCJvaWxfdXJsZ2VuX2FwcF9pZCI6MCwiY2xpZW50X25hbWUiOiJ1bmtub3duIiwieHB2X2Fzc2V0X2lkIjoxNDg5MzgyMDc1MDA1OTMyLCJhc3NldF9hZ2VfZGF5cyI6MjIzOSwidmlfdXNlY2FzZV9pZCI6MTAxMjIsImR1cmF0aW9uX3MiOjM2MiwiYml0cmF0ZSI6MTA1NjcwNSwidXJsZ2VuX3NvdXJjZSI6Ind3dyJ9&ccb=17-1&_nc_gid=hiD2Y0jTb3isj0jO2j7VLg&_nc_ss=7b2a8&_nc_zt=28&oh=00_Af7KhIWiNfKAjINOyf_sRGVyJm4O50fljFYZlRLZ9hXlrQ&oe=6A129725" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <div id="videoExpiredMsg" style="display:none;padding:28px 20px;text-align:center;">
@@ -246,52 +250,38 @@ footer a{color:var(--purple);text-decoration:none}
   <p>Re-crafted during COVID, 2021 &middot; <a href="https://www.vishalmerani.com" target="_blank" rel="noopener">vishalmerani.com</a> &middot; May 2026</p>
 </footer>
 
-<!-- FB SDK -->
-<div id="fb-root"></div>
 <script>
-window.fbAsyncInit = function() {
-  FB.init({ xfbml: true, version: 'v21.0' });
-  // SDK loaded — swap fallback for player
-  FB.Event.subscribe('xfbml.render', function() {
-    var player = document.getElementById('fbPlayer');
-    var fallback = document.getElementById('fbFallback');
-    if (player && fallback) {
-      // Check an iframe actually rendered inside
-      var iframe = player.querySelector('iframe');
-      if (iframe) {
-        fallback.style.display = 'none';
-        player.style.display = 'block';
-      }
-    }
-  });
-};
-(function(d,s,id){
-  var js,fjs=d.getElementsByTagName(s)[0];
-  if(d.getElementById(id))return;
-  js=d.createElement(s);js.id=id;
-  js.src='https://connect.facebook.net/en_US/sdk.js';
-  js.crossOrigin='anonymous';
-  fjs.parentNode.insertBefore(js,fjs);
-}(document,'script','facebook-jssdk'));
+// Native video — real speed control
+var vid = null;
+document.addEventListener('DOMContentLoaded', function() {
+  vid = document.getElementById('mainVideo');
 
-// Timeout fallback — if SDK takes >8s, stay on fallback button
-setTimeout(function(){
-  var player = document.getElementById('fbPlayer');
-  if(player && player.style.display === 'none') {
-    // keep fallback visible, nothing to do
-  }
-}, 8000);
+  // Detect expired/broken CDN link
+  vid.addEventListener('error', function() {
+    vid.style.display = 'none';
+    document.getElementById('videoExpiredMsg').style.display = 'block';
+  });
+  vid.addEventListener('stalled', function() {
+    // give it 6 seconds before showing fallback
+    setTimeout(function() {
+      if (vid.readyState === 0) {
+        vid.style.display = 'none';
+        document.getElementById('videoExpiredMsg').style.display = 'block';
+      }
+    }, 6000);
+  });
+});
 
 var msgs = {
   1:   'Playing at normal speed.',
-  1.5: 'For 1.5× — tap ⚙ inside the video player → Playback Speed → 1.5×',
-  2:   'For 2× — tap ⚙ inside the video player → Playback Speed → 2×'
+  1.5: 'Playing at 1.5× speed.',
+  2:   'Playing at 2× speed.'
 };
 function setSpd(btn, rate) {
   document.querySelectorAll('.spd').forEach(function(b){b.classList.remove('on')});
   btn.classList.add('on');
   document.getElementById('sn').textContent = msgs[rate];
-  document.querySelectorAll('video').forEach(function(v){try{v.playbackRate=rate}catch(e){}});
+  if (vid) vid.playbackRate = rate;
 }
 
 var io = new IntersectionObserver(function(entries){
