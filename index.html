@@ -88,15 +88,44 @@ h1 em{font-style:italic;color:var(--purple)}
   background:#111;
   border-radius:16px 16px 0 0;
   overflow:hidden;
-  position:relative;
 }
-#mainVideo{
+.fb-iframe-wrap{
+  position:relative;
   width:100%;
-  display:block;
-  max-height:300px;
-  object-fit:contain;
+  padding-bottom:65%;
   background:#111;
 }
+.fb-iframe-wrap iframe{
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  border:none;
+}
+.fb-watch-link{
+  padding:12px 20px;
+  border-top:0.5px solid var(--border);
+  display:flex;
+  align-items:center;
+}
+.watch-fb-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:13px;
+  font-weight:500;
+  color:var(--purple);
+  text-decoration:none;
+  font-family:'DM Sans',sans-serif;
+  transition:opacity 0.15s;
+}
+.watch-fb-btn:hover{opacity:0.7}
+.footer-email{
+  margin-top:10px;
+  font-size:13px;
+  color:var(--muted);
+}
+.footer-email a{color:var(--purple);text-decoration:none}
+.footer-email a:hover{text-decoration:underline}
 .video-info{padding:20px 20px 24px}
 .video-caption{font-size:14px;color:var(--muted);margin-bottom:14px;font-style:italic;line-height:1.55}
 .video-caption strong{color:var(--text);font-style:normal}
@@ -161,20 +190,21 @@ footer a{color:var(--purple);text-decoration:none}
   <div class="sl">the conversation</div>
   <div class="video-card">
     <div class="native-video-wrap">
-      <video
-        id="mainVideo"
-        controls
-        playsinline
-        preload="metadata"
-        style="width:100%;display:block;background:#111;max-height:320px;object-fit:contain;"
-        poster=""
-      >
-        <source src="https://video.xx.fbcdn.net/o1/v/t2/f2/m366/AQOD4XVQH5goe4HMTkZA4JGwkp11Zv3lamol12VQAplmYI2Zf-x4sn4Z-Tw3F1GdUYm2SZVygC0JAVpVx8hmYQXvxbuLLxwTsL4C7i_knhzTww.mp4?_nc_cat=107&_nc_oc=Adq3kUCd9LfSey8MHIhq_Pz5LqBqIIo9FzRTj01HS6TR7Eo3IxR91HQMw81KCNV1CEU&_nc_sid=9ca052&_nc_ht=scontent.fblr21-2.fna.fbcdn.net&_nc_ohc=Lqug8ciPka0Q7kNvwEBsfvh&efg=eyJ2ZW5jb2RlX3RhZyI6ImRhc2hfdnA5LWJhc2ljLWdlbjJfMTA4MHAiLCJ2aWRlb19pZCI6ODUzNzY5Njk1MTIyOTg4LCJvaWxfdXJsZ2VuX2FwcF9pZCI6MCwiY2xpZW50X25hbWUiOiJ1bmtub3duIiwieHB2X2Fzc2V0X2lkIjoxNDg5MzgyMDc1MDA1OTMyLCJhc3NldF9hZ2VfZGF5cyI6MjIzOSwidmlfdXNlY2FzZV9pZCI6MTAxMjIsImR1cmF0aW9uX3MiOjM2MiwiYml0cmF0ZSI6MTA1NjcwNSwidXJsZ2VuX3NvdXJjZSI6Ind3dyJ9&ccb=17-1&_nc_gid=hiD2Y0jTb3isj0jO2j7VLg&_nc_ss=7b2a8&_nc_zt=28&oh=00_Af7KhIWiNfKAjINOyf_sRGVyJm4O50fljFYZlRLZ9hXlrQ&oe=6A129725" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div id="videoExpiredMsg" style="display:none;padding:28px 20px;text-align:center;">
-        <p style="font-size:14px;color:var(--muted);margin-bottom:14px;">Video link has expired. Watch it directly on Facebook.</p>
-        <a href="https://www.facebook.com/story.php?story_fbid=2884799781575011&id=100051081919063" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:white;font-size:14px;font-weight:500;padding:10px 20px;border-radius:100px;text-decoration:none;font-family:'DM Sans',sans-serif;">Watch on Facebook &rarr;</a>
+      <div class="fb-iframe-wrap">
+        <iframe
+          src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F100051081919063%2Fvideos%2F2884799781575011%2F&show_text=false&mute=0&autoplay=0&allowfullscreen=true"
+          style="border:none;overflow:hidden;width:100%;height:100%;position:absolute;top:0;left:0;"
+          scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; microphone; camera"
+        ></iframe>
+      </div>
+      <div class="fb-watch-link">
+        <a href="https://www.facebook.com/story.php?story_fbid=2884799781575011&id=100051081919063" target="_blank" rel="noopener" class="watch-fb-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          Watch on Facebook
+        </a>
       </div>
     </div>
     <div class="video-info">
@@ -248,42 +278,35 @@ footer a{color:var(--purple);text-decoration:none}
 
 <footer class="fi">
   <p>Re-crafted during COVID, 2021 &middot; <a href="https://www.vishalmerani.com" target="_blank" rel="noopener">vishalmerani.com</a> &middot; May 2026</p>
+  <p class="footer-email">Write to <a href="mailto:vm@vishalmerani.com">vm@vishalmerani.com</a> for anything</p>
 </footer>
 
 <script>
-// Native video — real speed control
-var vid = null;
-document.addEventListener('DOMContentLoaded', function() {
-  vid = document.getElementById('mainVideo');
-
-  // Detect expired/broken CDN link
-  vid.addEventListener('error', function() {
-    vid.style.display = 'none';
-    document.getElementById('videoExpiredMsg').style.display = 'block';
-  });
-  vid.addEventListener('stalled', function() {
-    // give it 6 seconds before showing fallback
-    setTimeout(function() {
-      if (vid.readyState === 0) {
-        vid.style.display = 'none';
-        document.getElementById('videoExpiredMsg').style.display = 'block';
-      }
-    }, 6000);
-  });
-});
-
-var msgs = {
-  1:   'Playing at normal speed.',
-  1.5: 'Playing at 1.5× speed.',
-  2:   'Playing at 2× speed.'
+// Speed — sends postMessage to FB iframe player (works on supporting browsers)
+var speedLabels = {
+  1:   'Normal speed selected.',
+  1.5: '1.5× selected — use the gear ⚙ inside the player to match.',
+  2:   '2× selected — use the gear ⚙ inside the player to match.'
 };
+
 function setSpd(btn, rate) {
   document.querySelectorAll('.spd').forEach(function(b){b.classList.remove('on')});
   btn.classList.add('on');
-  document.getElementById('sn').textContent = msgs[rate];
-  if (vid) vid.playbackRate = rate;
+  document.getElementById('sn').textContent = speedLabels[rate];
+  // attempt postMessage to iframe (FB player listens on some versions)
+  var iframe = document.querySelector('.fb-iframe-wrap iframe');
+  if (iframe && iframe.contentWindow) {
+    try {
+      iframe.contentWindow.postMessage(JSON.stringify({
+        type: 'setPlaybackRate', rate: rate
+      }), '*');
+    } catch(e) {}
+  }
 }
 
+// No auto-fallback needed — Watch on Facebook always visible below player
+
+// Fade-in scroll
 var io = new IntersectionObserver(function(entries){
   entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('v')});
 },{threshold:0.06});
