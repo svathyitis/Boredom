@@ -3,440 +3,301 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<title>Boredom — vishalmerani.com</title>
+<title>Boredom — Vishal Merani</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
+:root {
+  --bg: #ffffff;
+  --bg-2: #f6f6f5;
+  --text: #0a0a0a;
+  --muted: #636363;
+  --border: rgba(0,0,0,0.09);
+  --purple: #6a4fd4;
+  --ps: rgba(106,79,212,0.06);
+  --pb: rgba(106,79,212,0.16);
+}
+@media (prefers-color-scheme: dark) {
   :root {
-    --bg: #ffffff;
-    --bg-2: #f7f7f7;
-    --text: #0a0a0a;
-    --text-muted: #555;
-    --border: rgba(0,0,0,0.09);
-    --purple: #6a4fd4;
-    --purple-soft: rgba(106,79,212,0.07);
-    --purple-border: rgba(106,79,212,0.18);
+    --bg: #0e0e0e;
+    --bg-2: #181818;
+    --text: #efefef;
+    --muted: #888;
+    --border: rgba(255,255,255,0.08);
+    --purple: #9d82f8;
+    --ps: rgba(157,130,248,0.08);
+    --pb: rgba(157,130,248,0.2);
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0d0d0d;
-      --bg-2: #161616;
-      --text: #f0f0f0;
-      --text-muted: #888;
-      --border: rgba(255,255,255,0.08);
-      --purple: #9b7ff4;
-      --purple-soft: rgba(155,127,244,0.08);
-      --purple-border: rgba(155,127,244,0.2);
-    }
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 16px;
-    line-height: 1.7;
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 0 20px;
-    -webkit-font-smoothing: antialiased;
-  }
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:16px;
+  line-height:1.7;
+  max-width:480px;
+  margin:0 auto;
+  padding:0 20px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+@media(max-width:520px){body{padding-right:58px}}
 
-  /* ── header ── */
-  header {
-    padding: 52px 0 32px;
-    border-bottom: 0.5px solid var(--border);
-    margin-bottom: 48px;
-  }
-  .tag {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--purple);
-    margin-bottom: 16px;
-    display: block;
-  }
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(38px, 10vw, 52px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-  h1 em {
-    font-style: italic;
-    color: var(--purple);
-  }
-  .subtitle {
-    font-size: 15px;
-    color: var(--text-muted);
-    font-weight: 300;
-    max-width: 360px;
-  }
+/* ── WAVE NAV ── */
+.wave-nav{
+  position:fixed;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:999;
+  background:var(--purple);
+  border-radius:40px;
+  width:36px;
+  padding:11px 0 9px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+  box-shadow:0 3px 18px rgba(0,0,0,0.25);
+  text-decoration:none;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.wave-nav:hover{transform:translateY(calc(-50% - 2px)) scale(1.07);box-shadow:0 6px 28px rgba(0,0,0,0.3)}
+.wave-nav:active{transform:translateY(-50%) scale(0.96)}
+.wave-nav svg{width:22px;height:13px;display:block}
+.wave-nav span{font-size:7.5px;font-weight:500;letter-spacing:0.08em;color:rgba(255,255,255,0.75);text-transform:uppercase;font-family:'DM Sans',sans-serif;line-height:1}
 
-  /* ── section labels ── */
-  .section-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--purple);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 0.5px;
-    background: var(--border);
-  }
+/* ── HEADER ── */
+header{padding:56px 0 36px;border-bottom:0.5px solid var(--border);margin-bottom:52px}
+.tag{font-size:10.5px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--purple);margin-bottom:18px;display:block}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(42px,12vw,58px);line-height:1.02;letter-spacing:-0.025em;margin-bottom:18px}
+h1 em{font-style:italic;color:var(--purple)}
+.subtitle{font-size:15px;color:var(--muted);font-weight:300;line-height:1.65}
 
-  /* ── video section ── */
-  .section { margin-bottom: 56px; }
+/* ── SECTION ── */
+.section{margin-bottom:60px}
+.sl{font-size:10px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--purple);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.sl::after{content:'';flex:1;height:0.5px;background:var(--border)}
 
-  .video-card {
-    background: var(--bg-2);
-    border: 0.5px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-  .video-thumb {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: #0a0a0a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    overflow: hidden;
-  }
-  .video-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.55;
-    transition: opacity 0.3s;
-  }
-  .video-thumb:hover img { opacity: 0.7; }
-  .play-btn {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: var(--purple);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 24px rgba(106,79,212,0.4);
-  }
-  .video-thumb:hover .play-btn { transform: scale(1.08); }
-  .play-btn svg { width: 22px; height: 22px; fill: white; margin-left: 3px; }
-  .video-info {
-    padding: 20px 20px 24px;
-  }
-  .video-caption {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 14px;
-    font-style: italic;
-  }
-  .video-caption strong { color: var(--text); font-style: normal; }
-  .watch-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--purple);
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 10px 20px;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: opacity 0.2s;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .watch-btn:hover { opacity: 0.85; }
-  .watch-btn svg { width: 14px; height: 14px; fill: white; flex-shrink: 0; }
+/* ── VIDEO CARD ── */
+.video-card{background:var(--bg-2);border:0.5px solid var(--border);border-radius:16px;overflow:hidden}
+.fb-wrap{
+  width:100%;
+  background:#111;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  min-height:220px;
+  overflow:hidden;
+}
+.fb-video,.fb-video span,.fb-video span iframe{width:100%!important;max-width:100%!important}
+.video-info{padding:20px 20px 24px}
+.video-caption{font-size:14px;color:var(--muted);margin-bottom:14px;font-style:italic;line-height:1.55}
+.video-caption strong{color:var(--text);font-style:normal}
+.speed-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.speed-lbl{font-size:12px;color:var(--muted)}
+.spd{font-size:12px;font-weight:500;padding:5px 13px;border-radius:100px;border:0.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+.spd.on,.spd:hover{border-color:var(--purple);color:var(--purple);background:var(--ps)}
+.speed-note{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
 
-  /* speed selector */
-  .speed-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 16px;
-    flex-wrap: wrap;
-  }
-  .speed-label { font-size: 12px; color: var(--text-muted); }
-  .speed-btn {
-    font-size: 12px;
-    font-weight: 500;
-    padding: 5px 12px;
-    border-radius: 100px;
-    border: 0.5px solid var(--border);
-    background: transparent;
-    color: var(--text-muted);
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.15s;
-  }
-  .speed-btn.active, .speed-btn:hover {
-    border-color: var(--purple);
-    color: var(--purple);
-    background: var(--purple-soft);
-  }
+/* ── WISDOM ── */
+.wisdom-card{background:var(--ps);border:0.5px solid var(--pb);border-radius:16px;padding:28px 24px 24px;position:relative}
+.wisdom-card::before{content:'\201C';font-family:'DM Serif Display',serif;font-size:90px;color:var(--purple);opacity:0.14;position:absolute;top:-8px;left:14px;line-height:1;pointer-events:none}
+.wey{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--purple);font-weight:500;margin-bottom:16px}
+.wintro{font-size:15px;font-weight:300;color:var(--muted);margin-bottom:22px;line-height:1.65}
+.wp{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
+.wd{width:5px;height:5px;border-radius:50%;background:var(--purple);margin-top:10px;flex-shrink:0}
+.wp p{font-size:15px;line-height:1.65}
+.who{margin-top:24px;border-top:0.5px solid var(--pb);padding-top:20px}
+.who blockquote{font-family:'DM Serif Display',serif;font-size:17px;font-style:italic;line-height:1.5}
+.wsrc{font-size:12px;color:var(--muted);margin-top:10px}
+.wsrc a{color:var(--purple);text-decoration:none}
 
-  /* ── wisdom card ── */
-  .wisdom-card {
-    background: var(--purple-soft);
-    border: 0.5px solid var(--purple-border);
-    border-radius: 16px;
-    padding: 28px 24px;
-    position: relative;
-  }
-  .wisdom-card::before {
-    content: '\201C';
-    font-family: 'DM Serif Display', serif;
-    font-size: 80px;
-    color: var(--purple);
-    opacity: 0.2;
-    position: absolute;
-    top: -8px;
-    left: 16px;
-    line-height: 1;
-  }
-  .wisdom-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--purple);
-    font-weight: 500;
-    margin-bottom: 16px;
-  }
-  .wisdom-intro {
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    line-height: 1.65;
-  }
-  .wisdom-point {
-    display: flex;
-    gap: 14px;
-    margin-bottom: 16px;
-    align-items: flex-start;
-  }
-  .wisdom-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--purple);
-    margin-top: 9px;
-    flex-shrink: 0;
-  }
-  .wisdom-point p {
-    font-size: 15px;
-    color: var(--text);
-    line-height: 1.65;
-  }
-  .wisdom-highlight {
-    margin-top: 24px;
-    border-top: 0.5px solid var(--purple-border);
-    padding-top: 20px;
-  }
-  .wisdom-highlight blockquote {
-    font-family: 'DM Serif Display', serif;
-    font-size: 17px;
-    font-style: italic;
-    color: var(--text);
-    line-height: 1.5;
-  }
-  .wisdom-source {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 10px;
-  }
-  .wisdom-source a { color: var(--purple); text-decoration: none; }
+/* ── OVERCOME ── */
+.oc-card{background:var(--bg-2);border:0.5px solid var(--border);border-radius:16px;overflow:hidden}
+.oc-item{padding:18px 20px;border-bottom:0.5px solid var(--border);display:flex;gap:14px;align-items:flex-start}
+.oc-item:last-child{border-bottom:none}
+.oc-num{font-family:'DM Serif Display',serif;font-size:26px;color:var(--purple);opacity:0.28;line-height:1;min-width:22px;padding-top:2px}
+.oc-text{font-size:15px;line-height:1.6}
+.oc-text strong{font-weight:500;display:block;margin-bottom:3px}
+.oc-text span{font-size:14px;color:var(--muted)}
 
-  /* ── overcome section ── */
-  .overcome-card {
-    background: var(--bg-2);
-    border: 0.5px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-  .overcome-item {
-    padding: 18px 20px;
-    border-bottom: 0.5px solid var(--border);
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-  }
-  .overcome-item:last-child { border-bottom: none; }
-  .overcome-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 24px;
-    color: var(--purple);
-    opacity: 0.35;
-    line-height: 1;
-    min-width: 24px;
-    padding-top: 2px;
-  }
-  .overcome-text { font-size: 15px; color: var(--text); line-height: 1.6; }
-  .overcome-text strong { font-weight: 500; display: block; margin-bottom: 2px; }
-  .overcome-text span { font-size: 14px; color: var(--text-muted); }
+/* ── FOOTER ── */
+footer{padding:36px 0 64px;border-top:0.5px solid var(--border);margin-top:56px;text-align:center}
+footer p{font-size:13px;color:var(--muted);line-height:1.9}
+footer a{color:var(--purple);text-decoration:none}
 
-  /* ── footer ── */
-  footer {
-    padding: 40px 0 52px;
-    border-top: 0.5px solid var(--border);
-    margin-top: 56px;
-    text-align: center;
-  }
-  footer p { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
-  footer a { color: var(--purple); text-decoration: none; }
-
-  /* ── fade-in animation ── */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
-  }
-  .fade-in.visible { opacity: 1; transform: none; }
+/* ── FADE-IN ── */
+.fi{opacity:0;transform:translateY(18px);transition:opacity 0.55s ease,transform 0.55s ease}
+.fi.v{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
-<header class="fade-in">
+<!-- WAVE NAV -->
+<a class="wave-nav" href="https://www.vishalmerani.com" target="_blank" rel="noopener" aria-label="Go to Vishal Merani main site">
+  <svg viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M1 6.5 C3 1.5 6 1.5 8 6.5 C10 11.5 13 11.5 15 6.5 C17 1.5 19.5 3.5 21 5.5"
+      stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>home</span>
+</a>
+
+<!-- HEADER -->
+<header class="fi">
   <span class="tag">vishalmerani.com · reflection</span>
   <h1>Bore<em>dom</em></h1>
   <p class="subtitle">A window into stillness — a doorway to wisdom, or a descent into restlessness. It depends on what you do with it.</p>
 </header>
 
-<!-- VIDEO SECTION -->
-<section class="section fade-in">
-  <div class="section-label">the conversation</div>
-
+<!-- VIDEO -->
+<section class="section fi">
+  <div class="sl">the conversation</div>
   <div class="video-card">
-    <a class="video-thumb" href="https://www.facebook.com/story.php?story_fbid=2884799781575011&id=100051081919063" target="_blank" rel="noopener" id="videoLink" aria-label="Watch boredom during COVID video on Facebook">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/240px-Facebook_Logo_%282019%29.png" alt="Facebook video thumbnail" style="object-fit: contain; padding: 40px; opacity: 0.12;">
-      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;">
-        <div class="play-btn">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <span style="color:white;font-size:13px;font-weight:500;letter-spacing:0.04em;opacity:0.8;">Watch on Facebook</span>
+    <div class="native-video-wrap">
+      <video
+        id="mainVideo"
+        controls
+        playsinline
+        preload="metadata"
+        style="width:100%;display:block;background:#111;max-height:320px;object-fit:contain;"
+        poster=""
+      >
+        <source src="https://video.fblr21-2.fna.fbcdn.net/o1/v/t2/f2/m366/AQOD4XVQH5goe4HMTkZA4JGwkp11Zv3lamol12VQAplmYI2Zf-x4sn4Z-Tw3F1GdUYm2SZVygC0JAVpVx8hmYQXvxbuLLxwTsL4C7i_knhzTww.mp4?_nc_cat=107&_nc_oc=Adq3kUCd9LfSey8MHIhq_Pz5LqBqIIo9FzRTj01HS6TR7Eo3IxR91HQMw81KCNV1CEU&_nc_sid=9ca052&_nc_ht=video.fblr21-2.fna.fbcdn.net&_nc_ohc=Lqug8ciPka0Q7kNvwEBsfvh&efg=eyJ2ZW5jb2RlX3RhZyI6ImRhc2hfdnA5LWJhc2ljLWdlbjJfMTA4MHAiLCJ2aWRlb19pZCI6ODUzNzY5Njk1MTIyOTg4LCJvaWxfdXJsZ2VuX2FwcF9pZCI6MCwiY2xpZW50X25hbWUiOiJ1bmtub3duIiwieHB2X2Fzc2V0X2lkIjoxNDg5MzgyMDc1MDA1OTMyLCJhc3NldF9hZ2VfZGF5cyI6MjIzOSwidmlfdXNlY2FzZV9pZCI6MTAxMjIsImR1cmF0aW9uX3MiOjM2MiwiYml0cmF0ZSI6MTA1NjcwNSwidXJsZ2VuX3NvdXJjZSI6Ind3dyJ9&ccb=17-1&_nc_gid=aHeYTSXy7vDhg9S7wZCRoQ&_nc_ss=7b289&_nc_zt=28&oh=00_Af6Gcy2kncITMJYf8DrJR-bXBmctkIOFrqMhBLG-xSPlRw&oe=6A129725&bytestart=3912039&byteend=4459334" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div id="videoExpiredMsg" style="display:none;padding:28px 20px;text-align:center;">
+        <p style="font-size:14px;color:var(--muted);margin-bottom:14px;">Video link has expired. Watch it directly on Facebook.</p>
+        <a href="https://www.facebook.com/story.php?story_fbid=2884799781575011&id=100051081919063" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:white;font-size:14px;font-weight:500;padding:10px 20px;border-radius:100px;text-decoration:none;font-family:'DM Sans',sans-serif;">Watch on Facebook &rarr;</a>
       </div>
-    </a>
-
+    </div>
     <div class="video-info">
       <p class="video-caption">We discussed about <strong>boredom during COVID</strong> — what it means, why it happens, and what it can teach us. Here is the video.</p>
-
-      <a class="watch-btn" href="https://www.facebook.com/story.php?story_fbid=2884799781575011&id=100051081919063" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        Watch the discussion
-      </a>
-
       <div class="speed-row">
-        <span class="speed-label">Preferred speed:</span>
-        <button class="speed-btn active" onclick="selectSpeed(this,'1x')">1×</button>
-        <button class="speed-btn" onclick="selectSpeed(this,'1.5x')">1.5×</button>
-        <button class="speed-btn" onclick="selectSpeed(this,'2x')">2×</button>
+        <span class="speed-lbl">Playback speed:</span>
+        <button class="spd on" onclick="setSpd(this,1)">1×</button>
+        <button class="spd" onclick="setSpd(this,1.5)">1.5×</button>
+        <button class="spd" onclick="setSpd(this,2)">2×</button>
       </div>
-      <p id="speedNote" style="font-size:12px;color:var(--text-muted);margin-top:8px;">On Facebook, tap the video ⋯ menu → Playback speed → 1×</p>
+      <p class="speed-note" id="sn">Playing at normal speed.</p>
     </div>
   </div>
 </section>
 
-<!-- WISDOM SECTION -->
-<section class="section fade-in">
-  <div class="section-label">wisdom on boredom</div>
-
+<!-- WISDOM -->
+<section class="section fi">
+  <div class="sl">wisdom on boredom</div>
   <div class="wisdom-card">
-    <div class="wisdom-eyebrow">Gurudev Sri Sri Ravi Shankar</div>
-    <p class="wisdom-intro">The ocean waves without pause and never gets bored. Birds sing the same song each morning, all their lives. Only humans get bored — because of memory. And this memory is both a gift and a burden.</p>
-
-    <div class="wisdom-point">
-      <div class="wisdom-dot"></div>
-      <p><strong style="font-weight:500;">Boredom as a blessing</strong> — it pushes you to seek something new, something deeper. It turns you into a seeker. It pulls you away from the routine and wakes you up.</p>
+    <div class="wey">Gurudev Sri Sri Ravi Shankar</div>
+    <p class="wintro">The ocean waves endlessly without growing tired. Birds sing the same song every morning all their lives. Only humans get bored — because of memory. And memory is both a gift and a burden.</p>
+    <div class="wp">
+      <div class="wd"></div>
+      <p><strong style="font-weight:500">Boredom as a blessing</strong> — it pushes you to seek something new, something deeper. It turns you into a seeker, pulling you away from routine and waking you into a quest for the higher.</p>
     </div>
-
-    <div class="wisdom-point">
-      <div class="wisdom-dot"></div>
-      <p><strong style="font-weight:500;">Boredom as a curse</strong> — left unchecked, it leads to frustration and depression. The mind wanders aimlessly, unable to settle or enjoy anything.</p>
+    <div class="wp">
+      <div class="wd"></div>
+      <p><strong style="font-weight:500">Boredom as a curse</strong> — left unchecked, it leads to frustration and depression. The mind wanders aimlessly, unable to settle or enjoy anything in front of it.</p>
     </div>
-
-    <div class="wisdom-point">
-      <div class="wisdom-dot"></div>
-      <p><strong style="font-weight:500;">The bridge</strong> — meditation connects the head and heart. Sitting with boredom, without escaping it, opens a doorway into deep stillness. The Self is ever new, ever fresh — boredom is just the surface layer.</p>
+    <div class="wp">
+      <div class="wd"></div>
+      <p><strong style="font-weight:500">Meditation as the bridge</strong> — sitting with boredom, without fleeing it, opens a doorway into deep stillness. The Self is ever new, ever fresh — boredom is only the surface layer.</p>
     </div>
-
-    <div class="wisdom-highlight">
+    <div class="who">
       <blockquote>"Boredom is a blessing when it leads you to wisdom. A curse when it leads you to frustration and depression."</blockquote>
-      <p class="wisdom-source">— <a href="https://wisdom.srisriravishankar.org/boredom-both-a-blessing-and-a-curse/" target="_blank" rel="noopener">Gurudev Sri Sri Ravi Shankar</a></p>
+      <p class="wsrc">— <a href="https://wisdom.srisriravishankar.org/boredom-both-a-blessing-and-a-curse/" target="_blank" rel="noopener">Gurudev Sri Sri Ravi Shankar</a></p>
     </div>
   </div>
 </section>
 
-<!-- HOW TO OVERCOME -->
-<section class="section fade-in">
-  <div class="section-label">how to overcome it</div>
-
-  <div class="overcome-card">
-    <div class="overcome-item">
-      <div class="overcome-num">1</div>
-      <div class="overcome-text">
+<!-- OVERCOME -->
+<section class="section fi">
+  <div class="sl">how to overcome it</div>
+  <div class="oc-card">
+    <div class="oc-item">
+      <div class="oc-num">1</div>
+      <div class="oc-text">
         <strong>Find a bigger purpose</strong>
-        <span>When your heart beats for something beyond yourself — a cause, a person, a craft — boredom quietly disappears. Commitment is the antidote.</span>
+        <span>When your heart beats for something beyond yourself — a cause, a craft, another person — boredom quietly vanishes. Commitment is the antidote.</span>
       </div>
     </div>
-    <div class="overcome-item">
-      <div class="overcome-num">2</div>
-      <div class="overcome-text">
-        <strong>Meditate through it</strong>
-        <span>Instead of escaping boredom, sit with it. Practice — abhyasa — penetrates boredom and dissolves it. Root it out through continued, deep meditation.</span>
+    <div class="oc-item">
+      <div class="oc-num">2</div>
+      <div class="oc-text">
+        <strong>Meditate through it, not away from it</strong>
+        <span>Sitting with boredom — abhyasa — penetrates and dissolves it. Root it out through continued, deep practice rather than distraction.</span>
       </div>
     </div>
-    <div class="overcome-item">
-      <div class="overcome-num">3</div>
-      <div class="overcome-text">
-        <strong>Love what you repeat</strong>
-        <span>Repetition without love creates boredom. Repetition with love creates devotion. The Self is love — and love never bores.</span>
+    <div class="oc-item">
+      <div class="oc-num">3</div>
+      <div class="oc-text">
+        <strong>Infuse love into repetition</strong>
+        <span>Repetition without love is boredom. Repetition with love becomes devotion. The Self is love — and love never tires.</span>
       </div>
     </div>
   </div>
-
-  <p style="font-size:13px;color:var(--text-muted);margin-top:14px;padding:0 4px;">
-    Source: <a href="https://wisdom.srisriravishankar.org/how-to-overcome-boredom/" target="_blank" rel="noopener" style="color:var(--purple);text-decoration:none;">wisdom.srisriravishankar.org</a>
+  <p style="font-size:13px;color:var(--muted);margin-top:14px;padding:0 2px">
+    Source: <a href="https://wisdom.srisriravishankar.org/how-to-overcome-boredom/" target="_blank" rel="noopener" style="color:var(--purple);text-decoration:none">wisdom.srisriravishankar.org</a>
   </p>
 </section>
 
-<footer class="fade-in">
-  <p>A reflection by <a href="https://vishalmerani.com" target="_blank" rel="noopener">Vishal Merani</a><br>
-  Made during boredom itself — during COVID, 2020</p>
+<footer class="fi">
+  <p>Re-crafted during COVID, 2021 &middot; <a href="https://www.vishalmerani.com" target="_blank" rel="noopener">vishalmerani.com</a> &middot; May 2026</p>
 </footer>
 
+<!-- FB SDK -->
+<div id="fb-root"></div>
 <script>
-  function selectSpeed(btn, speed) {
-    document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const notes = {
-      '1x': 'On Facebook, tap the video ⋯ menu → Playback speed → 1×',
-      '1.5x': 'On Facebook, tap the video ⋯ menu → Playback speed → 1.5×',
-      '2x': 'On Facebook, tap the video ⋯ menu → Playback speed → 2×'
-    };
-    document.getElementById('speedNote').textContent = notes[speed];
-  }
+window.fbAsyncInit = function() {
+  FB.init({ xfbml: true, version: 'v21.0' });
+  // SDK loaded — swap fallback for player
+  FB.Event.subscribe('xfbml.render', function() {
+    var player = document.getElementById('fbPlayer');
+    var fallback = document.getElementById('fbFallback');
+    if (player && fallback) {
+      // Check an iframe actually rendered inside
+      var iframe = player.querySelector('iframe');
+      if (iframe) {
+        fallback.style.display = 'none';
+        player.style.display = 'block';
+      }
+    }
+  });
+};
+(function(d,s,id){
+  var js,fjs=d.getElementsByTagName(s)[0];
+  if(d.getElementById(id))return;
+  js=d.createElement(s);js.id=id;
+  js.src='https://connect.facebook.net/en_US/sdk.js';
+  js.crossOrigin='anonymous';
+  fjs.parentNode.insertBefore(js,fjs);
+}(document,'script','facebook-jssdk'));
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+// Timeout fallback — if SDK takes >8s, stay on fallback button
+setTimeout(function(){
+  var player = document.getElementById('fbPlayer');
+  if(player && player.style.display === 'none') {
+    // keep fallback visible, nothing to do
+  }
+}, 8000);
+
+var msgs = {
+  1:   'Playing at normal speed.',
+  1.5: 'For 1.5× — tap ⚙ inside the video player → Playback Speed → 1.5×',
+  2:   'For 2× — tap ⚙ inside the video player → Playback Speed → 2×'
+};
+function setSpd(btn, rate) {
+  document.querySelectorAll('.spd').forEach(function(b){b.classList.remove('on')});
+  btn.classList.add('on');
+  document.getElementById('sn').textContent = msgs[rate];
+  document.querySelectorAll('video').forEach(function(v){try{v.playbackRate=rate}catch(e){}});
+}
+
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('v')});
+},{threshold:0.06});
+document.querySelectorAll('.fi').forEach(function(el){io.observe(el)});
 </script>
 </body>
 </html>
